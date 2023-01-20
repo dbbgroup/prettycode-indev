@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->bigInteger('id')->autoIncrement();
+            $table->timestamps();
+            $table->text('name');
+            $table->integer('rank')->default(0);
+            $table->text('email');
+            $table->text('password');
+            $table->text('salt');
+            $table->boolean('is_active');
+            $table->boolean('is_confirmed')->default(0);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('accounts');
+    }
+};
